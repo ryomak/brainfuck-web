@@ -85,7 +85,6 @@ export default {
       this.inputStr = example[this.selected];
     },
     tweetShare: function() {
-      console.log(addParam("input"), "aaaaaaaaa");
       const message = `「${this.result}」ができた%23kaomojy%23brainfxxk`;
       //const url = `https://twitter.com/intent/tweet?text=${message}&url=${addParam("input",this.inputStr)}`;
       const url = `https://twitter.com/intent/tweet?text=${message}&url=${window.location.origin}`;
