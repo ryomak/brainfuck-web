@@ -2,15 +2,16 @@
   <div class="home">
     <h2>Kaomojy</h2>
     <div class="des-area border-dot">
-      顔文字だけで、プログラムが書けます！！<br />面白いor難しいプログラムかけたら、<a
-        href="https://twitter.com/intent/tweet?button_hashtag=emojy&ref_src=twsrc%5Etfw"
-        class="twitter-hashtag-button"
-        data-show-count="false"
-        :data-text="dataText"
-        >Tweet #emojy</a
-      >してください！exampleに追加していこうと思います。 <br />仕組みは<a
-        href="https://ryomak.info/2019/brainfuck-go/"
-        >ここ</a
+      顔文字だけで、プログラムが書けます！！<br />面白いor難しいプログラムかけたら、
+      <button class="twitter" v-on:click="tweetShare()">Tweet #kaomojy</button
+      >してください！ <br />
+      <a
+        href="https://github.com/ryomak/brainfuck-web/issues/new"
+        target="blank"
+        >issueに</a
+      >挙げていただけたら
+      exampleに追加していこうと思います。（修正もお待ちしております）
+      <br />仕組みは<a href="https://ryomak.info/2019/brainfuck-go/">ここ</a
       >を参照してください
     </div>
     <h3>対応表</h3>
@@ -59,13 +60,14 @@
 // @ is an alias to /src
 import start from "@/assets/brainfuck.js";
 import example from "@/assets/example.js";
+import { getParam, addParam } from "@/assets/url.js";
 
 export default {
   name: "home",
   components: {},
   data() {
     return {
-      inputStr: "",
+      inputStr: getParam("input"),
       result: "",
       selected: ""
     };
@@ -73,9 +75,6 @@ export default {
   computed: {
     exampleList: function() {
       return Object.keys(example);
-    },
-    dataText: function() {
-      return `INPUT:"${this.inputStr}"\nOUTPUT":${this.result}"\n #Kaomojy #brainfxxk`;
     }
   },
   methods: {
@@ -84,6 +83,14 @@ export default {
     },
     load: function() {
       this.inputStr = example[this.selected];
+    },
+    tweetShare: function() {
+      console.log(addParam("input"), "aaaaaaaaa");
+      const message = `「${this.result}」ができた%23kaomojy%23brainfxxk`;
+      //const url = `https://twitter.com/intent/tweet?text=${message}&url=${addParam("input",this.inputStr)}`;
+      const url = `https://twitter.com/intent/tweet?text=${message}&url=${window.location.origin}`;
+      const option = "status=1,width=818,height=400,top=100,left=100";
+      window.open(url, "twitter", option);
     }
   }
 };
@@ -128,6 +135,20 @@ export default {
 .ma {
   padding: 2px;
   margin: 1em auto;
+}
+
+.twitter {
+  background-color: #55acee;
+  border: 2px solid #55acee;
+  border-radius: 20px;
+  color: #fff;
+  padding: 2px 15px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.twitter:hover {
+  background-color: #fff;
+  color: #55acee;
 }
 
 @media screen and (min-width: 601px) {

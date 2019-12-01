@@ -24,7 +24,7 @@ const maxStep = 10000;
 const maxMemory = 100;
 
 const start = input => {
-  const inputCommands = Array.from(input);
+  const inputCommands = Array.from(input.trim().replace(/\r?\n/g, ""));
   let memory = Array.apply(null, Array(maxMemory)).map(function() {
     return 0;
   });
