@@ -88,7 +88,7 @@ export default {
       const message = `「${this.result.substring(
         0,
         50
-      )}...」ができた%23kaomojy%23brainfxxk`;
+      )}...」ができた%20%23kaomojy%20%23brainfxxk`;
       //const url = `https://twitter.com/intent/tweet?text=${message}&url=${addParam("input",this.inputStr)}`;
       const url = `https://twitter.com/intent/tweet?text=${message}&url=${window.location.origin}`;
       const option = "status=1,width=818,height=400,top=100,left=100";
